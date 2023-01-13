@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>TCC Mall</h3>
+    <p>providing safe and convient digital shopping experience</p>
+    <hr>
+    <h3>Merchant Dashboard</h3>
+    
+    <p>Merchant ID: <span style="color:blue"><%=merchant_id%></span></p>
+    <p>Username: <span style="color:blue"><%=username%></span></p>
+    <hr>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/addPro">Add Products</a>
+    <a href="/viewPro">View Products</a>
+    <a href="/logout">Click to logout</a>
+    <hr>
+    <h3>View Products</h3>
+    <table border="1">
+        <tr>
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category
+            </th>
+            <th>Edit Product</th>
+            <th>Delete Product</th>
+        </tr>
+        <tr>
+            <% result.forEach((r)=>{%>
+  <td><img width ="100" src="data:image/<%=r.image.contentType %>;base64,<%=r.image.data.toString('base64')%> " alt=""></td>
+  <td><%= r.productName %> </td>
+  <td><%= r.description %> </td>
+  <td><%= r.price %> </td>
+  <td><%= r.category %> </td>
+  <td><a href="/edit/<%=r._id %>">Edit</a> </td>
+  <td><a href="/delete/<%=r._id %>">Delete</a> </td>
+  </tr>
+           <% }) %> 
+        
+    </table>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Merchant Dashboard</h3>
+    <p>Merchant ID: <span style="color:blue"><%=merchant_id%></span></p>
+    <p>Username: <span style="color:blue"><%=username%></span></p>
+    <hr>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/addPro">Add Products</a>
+    <a href="/viewPro">View Products</a>
+    <a href="/logout">Click to logout</a>
+    <hr>
+    <h1>Edit product </h1>
+    <% if(typeof(error)!="undefined"){%>
+     <% error.forEach(function(err){%>
+  <h6 style="color:red"><%=err%></h6>
+     <%})%>
+   <% }%>
+   <% if(message !=''){%>
+    <h6 style="color:green"><%= message%></h6>
+
+   <%}%>
+   <% if(error_msg !=""){%>
+<h6 style="color:red"><%=error_msg%></h6>
+  <% }%>
+    <% result.forEach((r)=>{%>
+   <form action="/edit/<%=r._id%>" method="post">
+    <p>Product Name: <input type="text" name="productName" id="" value="<%=r.productName %>"></p>
+    <p>Product Description: <br> <textarea name="description" id="" cols="30" rows="10"><%=r.description%></textarea></p>
+    <p>Product Price : <input type="number" name="price" id="" value="<%=r.price %>"></p>
+    <input type="submit" value="click to edit">
+   </form>
+    <%})%>
+</body>
+</html>

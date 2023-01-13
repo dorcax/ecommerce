@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCC Mall</title>
+</head>
+<body>
+    <h3>TCC Mall</h3>
+    <p>providing safe and convient digital shopping experience</p>
+    <hr>
+    <h3>Merchant Dashboard</h3>
+    
+    <p>Merchant ID: <span style="color:blue"><%=merchant_id%></span></p>
+    <p>Username: <span style="color:blue"><%=username%></span></p>
+    <hr>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/addPro">Add Products</a>
+    <a href="/viewPro">View Products</a>
+    <a href="/logout">Click to logout</a>
+    <hr>
+    <h3>Product Upload Page </h3>
+    <p>please fill in the product details below</p>
+
+    <% if(typeof(error_message)!="undefined"){%>
+  <% error_message.forEach(function(err){%>
+   <h6 style="color:red"><%= err.msg%></h6>
+ <% })%>
+  <%  } %> 
+  <% if(message !=""){%>
+<h6 style="color:green"><%=message%></h6>
+ <% } %> 
+ <% if(error_msg !=""){%>
+<h6 style="color:red"><%= error_msg%></h6>
+ <%} %> 
+<form action="/addPro" enctype="multipart/form-data" method="post">
+    <p>Product Name : <input type="text" name="productName" id=""></p>
+<p>Product Description: <input type="text" name="description" id=""></p>
+
+<p>Product Price: <input type="number" name="price" id=""></p>
+<% let products =["computer","Phones","Tablet","Printers","Accessories"] %> 
+<p>Product Category: <select name="category" id="">
+    <option value="select Product Category"></option>
+    <% for(let product of products){%>
+<option value="<%= product%>"><%= product%></option>
+   <% } %> 
+</select></p>
+<p>Upload Product Image: <input type="file" name="image" id=""></p>
+<input type="submit" value="click to add">
+</form>
+    
+</body>
+</html>
